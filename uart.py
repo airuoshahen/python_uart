@@ -3,15 +3,20 @@
 
 # In[ ]:
 
-
+import operator
 import serial
 import serial.tools.list_ports
 import _thread
 import time
 from tkinter import *
 
+global openSerialList
+global serialToTagNumList
+global lastRecvStrecStrList
+
 openSerialList = []
 serialToTagNumList = []
+lastRecvStrecStrList = []
 
 def btnResetCallback():
     if len(openSerialList) <= 0:
@@ -19,12 +24,13 @@ def btnResetCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('RESET\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Reset failed!')
-            else:
-                print(openSerialList[i].portstr+' Reset success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('RESET\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Reset failed!')
+			else:
+				print(openSerialList[i].portstr+' Reset success!')
 
 def btnMpuonCallback():
     if len(openSerialList) <= 0:
@@ -32,12 +38,13 @@ def btnMpuonCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('MPUON\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Mpuon failed!')
-            else:
-                print(openSerialList[i].portstr+' Mpuon success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('MPUON\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Mpuon failed!')
+			else:
+				print(openSerialList[i].portstr+' Mpuon success!')
                 
 def btnMpuofCallback():
     if len(openSerialList) <= 0:
@@ -45,12 +52,13 @@ def btnMpuofCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('MPUOF\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Mpuof failed!')
-            else:
-                print(openSerialList[i].portstr+' Mpuof success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('MPUOF\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Mpuof failed!')
+			else:
+				print(openSerialList[i].portstr+' Mpuof success!')
                 
 def btnSlotCallback():
     if len(openSerialList) <= 0:
@@ -58,12 +66,13 @@ def btnSlotCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('SLOT\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Slot failed!')
-            else:
-                print(openSerialList[i].portstr+' Slot success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('SLOT\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Slot failed!')
+			else:
+				print(openSerialList[i].portstr+' Slot success!')
                 
 def btnSmagCallback():
     if len(openSerialList) <= 0:
@@ -71,12 +80,13 @@ def btnSmagCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('SMAG\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Smag failed!')
-            else:
-                print(openSerialList[i].portstr+' Smag success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('SMAG\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Smag failed!')
+			else:
+				print(openSerialList[i].portstr+' Smag success!')
                 
 def btnSteponCallback():
     if len(openSerialList) <= 0:
@@ -84,12 +94,13 @@ def btnSteponCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('STEPON\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Stepon failed!')
-            else:
-                print(openSerialList[i].portstr+' Stepon success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('STEPON\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Stepon failed!')
+			else:
+				print(openSerialList[i].portstr+' Stepon success!')
                 
 def btnStepofCallback():
     if len(openSerialList) <= 0:
@@ -97,12 +108,13 @@ def btnStepofCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('STEPOF\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Stepof failed!')
-            else:
-                print(openSerialList[i].portstr+' Stepof success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('STEPOF\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Stepof failed!')
+			else:
+				print(openSerialList[i].portstr+' Stepof success!')
                 
 def btnDisonCallback():
     if len(openSerialList) <= 0:
@@ -110,12 +122,13 @@ def btnDisonCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('DISON\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Dison failed!')
-            else:
-                print(openSerialList[i].portstr+' Dison success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('DISON\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Dison failed!')
+			else:
+				print(openSerialList[i].portstr+' Dison success!')
                 
 def btnDisofCallback():
     if len(openSerialList) <= 0:
@@ -123,12 +136,13 @@ def btnDisofCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('DISOF\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Disof failed!')
-            else:
-                print(openSerialList[i].portstr+' Disof success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('DISOF\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Disof failed!')
+			else:
+				print(openSerialList[i].portstr+' Disof success!')
 
 def btnMagonCallback():
     if len(openSerialList) <= 0:
@@ -136,12 +150,13 @@ def btnMagonCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('MAGON\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Magon failed!')
-            else:
-                print(openSerialList[i].portstr+' Magon success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('MAGON\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Magon failed!')
+			else:
+				print(openSerialList[i].portstr+' Magon success!')
                 
 def btnMagofCallback():
     if len(openSerialList) <= 0:
@@ -149,12 +164,13 @@ def btnMagofCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('MAGOF\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Magof failed!')
-            else:
-                print(openSerialList[i].portstr+' Magof success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('MAGOF\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Magof failed!')
+			else:
+				print(openSerialList[i].portstr+' Magof success!')
                 
 def btnUwbonCallback():
     if len(openSerialList) <= 0:
@@ -162,12 +178,13 @@ def btnUwbonCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('UWBON\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Uwbon failed!')
-            else:
-                print(openSerialList[i].portstr+' Uwbon success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('UWBON\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Uwbon failed!')
+			else:
+				print(openSerialList[i].portstr+' Uwbon success!')
                 
 def btnUwbofCallback():
     if len(openSerialList) <= 0:
@@ -175,13 +192,27 @@ def btnUwbofCallback():
         return
     else:
         for i in range(0,len(openSerialList)):
-            try:
-                openSerialList[i].write('UWBOF\r\n'.encode())
-            except:
-                print(openSerialList[i].portstr+' Uwbof failed!')
-            else:
-                print(openSerialList[i].portstr+' Uwbof success!')
+#			if serialToTagNumList[i] > 0 and serialToTagNumList[i] < 5:
+			try:
+				openSerialList[i].write('UWBOF\r\n'.encode())
+			except:
+				print(openSerialList[i].portstr+' Uwbof failed!')
+			else:
+				print(openSerialList[i].portstr+' Uwbof success!')
                 
+def btnCloseCallback():
+    if len(openSerialList) <= 0:
+        print('len <= 0')
+        return
+    else:
+        for i in range(0,len(openSerialList)):
+			try:
+				openSerialList[i].close()
+			except:
+				print(openSerialList[i].portstr+' Close failed!')
+			else:
+				print(openSerialList[i].portstr+' Close success!')
+					
 def guiShow():
     root = Tk()
 
@@ -266,6 +297,12 @@ def guiShow():
     btnUwbof['command'] = btnUwbofCallback
 
     btnUwbof.place(x=120, y=60, width=100, height=40)
+	
+    btnClose = Button(text="CLOSE", borderwidth="2", font=("微软雅黑", 15), background="white")
+
+    btnClose['command'] = btnCloseCallback
+
+    btnClose.place(x=120, y=110, width=100, height=40)
 
     root.mainloop()
 
@@ -292,50 +329,64 @@ def comHandle():
             serialName = plist_0[0]
             print(serialName)
             try:
-                serialFd = serial.Serial(serialName,115200,timeout=0.5)
+                serialFd = serial.Serial(serialName,115200,timeout=0.02)
                 print('check which port was really used >',serialFd.name)
                 if serialFd.isOpen():
-                    print(serialFd.name,' is open!')
-                    openSerialList.append(serialFd)
-                    serialToTagNumList.append(5)
+					print(serialFd.name,' is open!')
+					serialFd.WriteTimeout = 1
+					openSerialList.append(serialFd)
+					serialToTagNumList.append(5)
+					lastRecvStrecStrList.append(['a'])
                 else:
                     print(serialFd.name,' is close!')
             except:
                 print(serialName,' open failed!')
     print(serialToTagNumList)
     print(openSerialList)
+    time.sleep(10)
     #下面19--25行的程序是如何运用串口读取发送数据
     while True:
-        if len(openSerialList)==0:
-            print('no open serial!')
-            break
-        for i in range(0,len(openSerialList)):
-            readBytes = openSerialList[i].readline()
-            readStr = bytes.decode(readBytes)
-            if len(readStr) != 0:
-                if 'slot' in readStr:
-                    serialToTagNumList.insert(i,int(readStr[-3],base=10))
-                    serialToTagNumList.pop(i+1)
-                    fileName = 'tag'+readStr[-3]+'.txt'
-                    print('fileName is '+fileName)
-                    save_to_file(fileName,'tag'+readStr[-3]+' save file test!\n')
-                else:
-                    if serialToTagNumList[i] == 1:
-                        save_to_file('tag1.txt',readStr)
-                    elif serialToTagNumList[i] == 2:
-                        save_to_file('tag2.txt',readStr)
-                    elif serialToTagNumList[i] == 3:
-                        save_to_file('tag3.txt',readStr)
-                    elif serialToTagNumList[i] == 4:
-                        save_to_file('tag4.txt',readStr)
-                    else:
-                        print(openSerialList[i].portstr,'not get tag num!')
-            else:
-                print(openSerialList[i].portstr,'recv nothing!')
-        print(serialToTagNumList)
-        time.sleep(0.1)
-    for i in range(0,len(openSerialList)):
-        openSerialList[i].close()
+		if len(openSerialList)==0:
+			print('no open serial!')
+			break
+		for i in range(0,len(openSerialList)):
+			readBytes = openSerialList[i].readline()
+			try:
+				readStr = bytes.decode(readBytes)
+			except:
+				print(openSerialList[i].portstr,readBytes)
+			else:
+				if len(readStr) != 0:
+					lastRecvStr = ','.join(lastRecvStrecStrList[i])
+					if operator.ne(lastRecvStr,readStr):
+						print(lastRecvStr,'is last')
+						lastRecvStrecStrList.insert(i,readStr.split(','))
+						lastRecvStrecStrList.pop(i+1)
+						print(readStr,'is new')
+						if 'slot' in readStr:
+							serialToTagNumList.insert(i,int(readStr[-3],base=10))
+							serialToTagNumList.pop(i+1)
+							fileName = 'tag'+readStr[-3]+'.txt'
+							print('fileName is '+fileName)
+							save_to_file(fileName,'tag'+readStr[-3]+' save file test!\n')
+						else:
+							if serialToTagNumList[i] == 1:
+								save_to_file('tag1.txt',readStr)
+							elif serialToTagNumList[i] == 2:
+								save_to_file('tag2.txt',readStr)
+							elif serialToTagNumList[i] == 3:
+								save_to_file('tag3.txt',readStr)
+							elif serialToTagNumList[i] == 4:
+								save_to_file('tag4.txt',readStr)
+							else:
+								print(openSerialList[i].portstr,'not get tag num!')
+					else:
+						print(openSerialList[i].portstr,'recv same str!')
+					print(openSerialList[i].portstr,'recv',readStr)
+#				else:
+#					print(openSerialList[i].portstr,'recv nothing!')
+#		print(serialToTagNumList)
+    
         
 if __name__ == '__main__':
     try:
@@ -345,5 +396,4 @@ if __name__ == '__main__':
         print('Error:无法启动线程!')
     
     while True:
-        pass
-
+		pass
